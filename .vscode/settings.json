@@ -9,5 +9,6 @@
   "idf.toolsPathWin": "C:\\Users\\Jeff\\.espressif",
   "idf.customExtraVars": {
     "IDF_TARGET": "esp32"
-  }
+  },
+  "idf.currentSetup": "C:\\Users\\Jeff\\esp\\v5.4\\esp-idf"
 }

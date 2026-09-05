@@ -1,6 +1,8 @@
 #ifndef DOT_H
 #define DOT_H
 
+// A simple struct for the dots (snake head, snake tail, apple) used.
+
 #include <stdlib.h>
 #include <stdint.h>
 

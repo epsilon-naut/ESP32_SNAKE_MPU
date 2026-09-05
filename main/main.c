@@ -38,9 +38,6 @@ void app_main(void)
     y_accel = read_accel_y(2, data, &data1, &data2);
     z_accel = read_accel_z(2, data, &data1, &data2);
     
-    ESP_LOGI("MPU6050", "%lf", x_accel);
-    ESP_LOGI("MPU6050", "%lf", z_accel);
-    ESP_LOGI("MPU6050", "%lf", y_accel);
     move_snake(&w, sn, x_accel, 0, apple, &score);
     move_snake(&w, sn, y_accel, 1, apple, &score);
     int i = 0;
@@ -50,10 +47,7 @@ void app_main(void)
         x_accel = read_accel_x(2, data, &data1, &data2);
         y_accel = read_accel_y(2, data, &data1, &data2);
         z_accel = read_accel_z(2, data, &data1, &data2);
-        
-        //ESP_LOGI("MPU6050", "%lf", x_accel);
-        //ESP_LOGI("MPU6050", "%lf", z_accel);
-        //ESP_LOGI("MPU6050", "%lf", y_accel);
+
         if(abs(x_accel) >= abs(y_accel)) {
             if(move_snake(&w, sn, x_accel, 0, apple, &score)) {
                 whitescreen(&w);
@@ -68,7 +62,8 @@ void app_main(void)
         }
         vTaskDelay(100/portTICK_PERIOD_MS);
     }
-    ESP_LOGI("Score", "%d", score);
+
+    // free memory for future games
     free(sn);
     free(apple);
 }

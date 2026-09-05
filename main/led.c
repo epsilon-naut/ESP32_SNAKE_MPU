@@ -1,6 +1,6 @@
 #include "led.h"
 
-
+// Initialization function
 void init(spi_device_handle_t *handle) {
     spi_bus_config_t bus_conf = {
         .mosi_io_num = SDA, 

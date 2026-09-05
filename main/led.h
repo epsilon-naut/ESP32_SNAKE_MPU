@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include "dot.h"
 
+// pins for individual 
+
 #define CS 5
 #define RST 32
 #define A0 14
@@ -18,8 +20,6 @@
 
 #define CPOL 0
 #define CPHA 0
-
-//currently BGR for some reason idk
 
 typedef struct wrapper {
     spi_device_handle_t *handle;

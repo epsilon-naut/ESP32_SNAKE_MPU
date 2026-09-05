@@ -57,15 +57,15 @@ void wakey_wakey() {
     ESP_LOGI("MPU6050", "%u", *data);
 }
 
-void check_connection_vulgar() {
+void check_connection() {
     if(i2c_master_probe(bus_handle, I2C_ADDRESS, -1) == ESP_OK) {
-        ESP_LOGI("MPU6050", "What the fuck");
+        ESP_LOGI("MPU6050", "All clear");
     }
     else if(i2c_master_probe(bus_handle, I2C_ADDRESS, -1) == ESP_ERR_TIMEOUT) {
-        ESP_LOGI("MPU6050", "huh");
+        ESP_LOGI("MPU6050", "Timeout");
     }
     else {
-        ESP_LOGI("MPU6050", "fuck you");
+        ESP_LOGI("MPU6050", "Other error");
     }
 }
 

@@ -1,5 +1,7 @@
 #include "move.h"
 
+// Functions that encode the snake's movement and growth.
+
 int min(int a, int b) {
     if (a > b) {
         return b;
@@ -9,7 +11,7 @@ int min(int a, int b) {
     }
 }
 
-int have_fun(node *n, dot d) {
+int same_pos(node *n, dot d) {
     if((n->pos.x == d.x)&&(n->pos.y == d.y)) {
         return 1;
     }
@@ -28,8 +30,8 @@ int check_collision(snake *sn, dot d) {
     }
     node *n2 = sn->tail;
     while(c+c1==4) {
-        c = have_fun(n, d);
-        c1 = have_fun(n2, d);
+        c = same_pos(n, d);
+        c1 = same_pos(n2, d);
         if((c+c1 == 4) && ((n == n2)||(n->tail==n2))) {
             c = 0;
         }
@@ -49,11 +51,11 @@ void start_apples(dot *app, snake *sn) {
     dot d;
     d.x = (rand() % 32)*4;
     d.y = (rand() % 32)*4;
-    int i = check_collision(sn, d);
+    int i = check_collision(sn, d); // check if apples collide with snake, if collides, generate new apple
     while(i) {
         d.x = (rand() % 32)*4;
         d.y = (rand() % 32)*4;
-        i = check_collision(sn, d);
+        i = check_collision(sn, d); 
     }
     *app = d;
 }
@@ -62,27 +64,25 @@ void regen_apples(dot *app, snake *sn) {
     dot d;
     d.x = (rand() % 32)*4;
     d.y = (rand() % 32)*4;
-    int i = check_collision(sn, d);
+    int i = check_collision(sn, d); // check if apples collide with snake, if collides, generate new apple
     while(i) {
         d.x = (rand() % 32)*4;
         d.y = (rand() % 32)*4;
-        i = check_collision(sn, d);
+        i = check_collision(sn, d); 
     }
     *app = d;
 }
 
 int check_sn_collision(snake *sn) {
     if((sn->head->pos.x > 124)||(sn->head->pos.x < 0)||(sn->head->pos.y > 124)||(sn->head->pos.y < 0)) {
-        return 1; //panic
+        return 1; // check if the snake goes out of bounds
     }
     else{
-        // cursed recursion
-        return check_collision(sn, sn->head->pos);
+        return check_collision(sn, sn->head->pos); // check if the snake colldies with itself
     }
 }
 
 int add_snake(wrapper *w, snake *sn, double speed, uint8_t xy) {
-    //probably smarter to do it pixel-line-wise?
     dot *d = (dot *)malloc(sizeof(dot));
     d->x = sn->head->pos.x;
     d->y = sn->head->pos.y;
@@ -136,7 +136,7 @@ int add_snake(wrapper *w, snake *sn, double speed, uint8_t xy) {
 }
 
 int move_snake(wrapper *w, snake *sn, double speed, uint8_t xy, dot *app, int *score) {
-    //probably smarter to do it pixel-line-wise?
+
     int i = add_snake(w, sn, speed, xy);
     if(!i && ((sn->head->pos.x == app->x)&&(sn->head->pos.y == app->y))) {
         regen_apples(app, sn);

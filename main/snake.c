@@ -1,5 +1,8 @@
 #include "snake.h"
 
+// Functions to start the linked list representing the snake, add new nodes or remove existing ones
+// (usually used to remove the tail of the snake when it moves)
+
 void enq(snake *sn, dot d) {
     node *nh = (node *)malloc(sizeof(node));
     nh->pos = d;
