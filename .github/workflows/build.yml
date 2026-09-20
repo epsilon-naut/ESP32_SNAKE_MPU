@@ -1,4 +1,5 @@
 name: Build Snake for the ESP32 Action
+description: Simple Github Action that automatically builds Snake for the ESP32 on push (and on manual execution for debugging). Uses ESP-IDF's own CI action (https://github.com/espressif/esp-idf-ci-action) to build and caches the Ccache directory to reduce build time in subsequent runs.
 on: [push, workflow_dispatch]
 jobs:
   build:
@@ -6,12 +7,10 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v4
-      with:
-        submodules: 'recursive'
+      uses: actions/checkout@v7
 
     - name: Cache Ccache Directory
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: .ccache
         key: ${{ runner.os }}-esp-idf-docker-${{ github.sha }}
