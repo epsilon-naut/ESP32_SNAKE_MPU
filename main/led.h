@@ -14,7 +14,7 @@
 
 #define CS 5
 #define RST 32
-#define A0 14
+#define A0 19
 #define SDA 23
 #define CLK 18
 

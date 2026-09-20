@@ -3,7 +3,7 @@
 void app_main(void)
 {
     setup();
-    check_connection_vulgar();
+    check_connection();
     wakey_wakey();
     ESP_LOGI("MPU6050","Setup finished!");
     sanity_check();

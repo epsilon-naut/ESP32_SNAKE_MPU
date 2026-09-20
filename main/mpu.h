@@ -44,7 +44,7 @@ void setup();
 
 void wakey_wakey();
 
-void check_connection_vulgar();
+void check_connection();
 
 void sanity_check();
 
