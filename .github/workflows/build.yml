@@ -1,5 +1,5 @@
 name: Build Snake for the ESP32 Action
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
